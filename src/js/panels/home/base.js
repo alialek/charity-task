@@ -32,7 +32,7 @@ class HomePanelBase extends React.Component {
                                     У Вас пока нет сборов. <br/> Начните доброе дело.
                         </Placeholder>
                 </Group>)}
-                {allPosts.length !== 0 && allPosts.map((post)=> <VKPost post={post}/>)}
+                {allPosts.length !== 0 && allPosts.map((post, i)=> <VKPost key={i}  post={post}/>)}
 
             </Panel>
         );

@@ -2,6 +2,10 @@
     display: table;
     margin: 0 auto;
 }
+
+.icon-rich-cell {
+    margin-right: 12px!important;
+}
 /*Нужно уменьшить отступы для поля с загрузкой обложки */
 .FormLayout__container:first-child() {
     padding: 4px 12px 0 12px

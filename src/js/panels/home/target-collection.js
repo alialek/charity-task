@@ -35,8 +35,9 @@ class HomePanelTargetCollection extends React.Component {
 	}
 	check() {
 		let { wallet, title, sum, target, description, picture } = this.props.form;
+		console.log( wallet, title, sum, target, description, picture)
 		return (
-			wallet >= 0 &&
+			wallet.length >= 0 &&
 			title.length > 0 &&
 			Number(sum) > 0 &&
 			target.length > 0 &&
@@ -72,8 +73,8 @@ class HomePanelTargetCollection extends React.Component {
 							type="text"
 							top="Название сбора"
 							placeholder="Название сбора"
-							value={form.name}
-							onChange={(e) => setFormData('name', e.target.value)}
+							value={form.title}
+							onChange={(e) => setFormData('title', e.target.value)}
 						/>
 						<Input
 							type="text"
