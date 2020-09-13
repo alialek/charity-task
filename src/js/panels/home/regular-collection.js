@@ -132,8 +132,8 @@ class HomePanelRegularCollection extends React.Component {
 							))}
 						</Select>
 						<Button
-							mode={this.check() ? 'primary' : 'secondary'}
-							style={{ pointerEvents: this.check() ? '' : 'none' }}
+						  mode="primary"
+							style={ this.check() ? {} : { opacity: 0.5, pointerEvents: 'none' }}
 							onClick={() => (console.log('ВЫЗВАТЬ БРИДЖ'), setFormData('type', 'target'))}
 							size="xl"
 						>

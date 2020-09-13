@@ -107,8 +107,8 @@ class HomePanelTargetCollection extends React.Component {
 							<option value="2">Счёт VK Pay · 1232</option>
 						</Select>
 						<Button
-							mode={this.check() ? 'primary' : 'secondary'}
-							style={{ pointerEvents: this.check() ? '' : 'none' }}
+						  mode="primary"
+							style={ this.check() ? {} : { opacity: 0.5, pointerEvents: 'none' }}
 							onClick={() => (setPage('home', 'target-collection-more'), setFormData('type', 'target'))}
 							size="xl"
 						>

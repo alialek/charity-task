@@ -97,9 +97,9 @@ class HomePanelTargetCollectionMore extends React.Component {
 							/>
 						)}
 						<Button
-							mode={this.check() ? 'primary' : 'secondary'}
+						  mode="primary"
+							style={ this.check() ? {} : { opacity: 0.5, pointerEvents: 'none' }}
 							onClick={() => setPage('home', 'target-collection-publish')}
-							style={{ pointerEvents: this.check() ? '' : 'none' }}
 							size="xl"
 						>
 							Создать сбор
