@@ -1,7 +1,21 @@
 import {SET_FORM_DATA} from './actionTypes';
 
 const initialState = {
-    forms: []
+    form: {
+        type: '', //regular or target
+        title: '',
+        sum: '',
+        target: '',
+        description: '',
+        wallet: '',
+        picture: '',
+        author: {
+            name: '',
+            id: ''
+        },
+        reasonToFinish: 0,
+        until: '02-03-2021'
+    }
 };
 
 export const formDataReducer = (state = initialState, action) => {
@@ -11,9 +25,9 @@ export const formDataReducer = (state = initialState, action) => {
         case SET_FORM_DATA: {
             return {
                 ...state,
-                forms: {
-                    ...state.forms,
-                    [action.payload.form]: action.payload.data
+                form: {
+                    ...state.form,
+                    [action.payload.key]: action.payload.data
                 }
             };
         }

@@ -11,6 +11,8 @@ import HomePanelProfile from './js/panels/home/base';
 import HomePanelCreateFee from './js/panels/home/create-fee';
 import HomePanelTargetCollection from './js/panels/home/target-collection';
 import HomePanelTargetCollectionMore from './js/panels/home/target-collection-more';
+import HomePanelRegularCollection from './js/panels/home/regular-collection';
+import ViewerPanelBase from './js/panels/viewer/base';
 
 import HomeBotsListModal from './js/components/modals/HomeBotsListModal';
 import HomeBotInfoModal from './js/components/modals/HomeBotInfoModal';
@@ -87,7 +89,16 @@ class App extends React.Component {
                         <HomePanelProfile id="base"/>
                         <HomePanelCreateFee id="create-fee"/>
                         <HomePanelTargetCollection id="target-collection"/>
+                        <HomePanelRegularCollection id="regular-collection"/>
                         <HomePanelTargetCollectionMore id="target-collection-more"/>
+                    </View>
+                    <View
+                        id="viewer"
+                        activePanel={getActivePanel("viewer")}
+                        history={history}
+                        onSwipeBack={() => goBack()}
+                    >
+                        <ViewerPanelBase id="base"/>
                     </View>
                     <View
                         id="modal"

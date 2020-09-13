@@ -24,9 +24,17 @@ import {
 	Textarea,
 } from '@vkontakte/vkui';
 
-class HomePanelTargetCollection extends React.Component {
+class HomePanelRegularCollection extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			authors: [
+				{
+					name: 'Павел Дуров',
+					id: 1,
+				},
+			],
+		};
 		this.onDrop = this.onDrop.bind(this);
 		this.check = this.check.bind(this);
 	}
@@ -49,8 +57,8 @@ class HomePanelTargetCollection extends React.Component {
 
 		return (
 			<Panel id={id}>
-				<PanelHeader left={<PanelHeaderBack onClick={() => goBack()} />}>Тип сбора</PanelHeader>
-				<Group>
+				<PanelHeader separator={false} left={<PanelHeaderBack onClick={() => goBack()} />}>Тип сбора</PanelHeader>
+			
 					<FormLayout>
 						<Div style={{ padding: '0 12px' }}>
 							<ImageUploader
@@ -106,16 +114,28 @@ class HomePanelTargetCollection extends React.Component {
 							<option value="1">Счёт VK Pay · 1235</option>
 							<option value="2">Счёт VK Pay · 1232</option>
 						</Select>
+						<Select
+							top="Автор"
+							placeholder="Выберите автора"
+							onChange={(e) => setFormData('author', { id: e.target.value, name: e.target.name })}
+							value={this.state.authors[0].id}
+						>
+							{this.state.authors.map((author) => (
+								<option value={author.id} key={author.id} name={author.name}>
+									{author.name}
+								</option>
+							))}
+						</Select>
 						<Button
 							mode={this.check() ? 'primary' : 'secondary'}
 							style={{ pointerEvents: this.check() ? '' : 'none' }}
-							onClick={() => (setPage('home', 'target-collection-more'), setFormData('type', 'target'))}
+							onClick={() => (console.log('ВЫЗВАТЬ БРИДЖ'), setFormData('type', 'target'))}
 							size="xl"
 						>
 							Далее
 						</Button>
 					</FormLayout>
-				</Group>
+			
 			</Panel>
 		);
 	}
@@ -134,4 +154,4 @@ function mapDispatchToProps(dispatch) {
 	};
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePanelTargetCollection);
+export default connect(mapStateToProps, mapDispatchToProps)(HomePanelRegularCollection);

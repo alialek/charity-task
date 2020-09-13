@@ -47,9 +47,10 @@ class HomePanelCreateFee extends React.Component {
 								header="Регулярный сбор"
 								subheader="Если помощь нужна ежемесячно"
 								asideMode="expand"
-								onClick={() => console.log('[Podcast banner] onClick')}
+                                onClick={() => setPage('home', 'regular-collection')}
 							/>
-
+                            
+						
 					</div>
 				</Group>
 			</Panel>

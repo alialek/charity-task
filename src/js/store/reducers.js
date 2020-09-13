@@ -6,5 +6,5 @@ import {formDataReducer} from "./formData/reducers";
 export default combineReducers({
     vkui: vkuiReducer,
     router: routerReducer,
-    formData: formDataReducer
+    data: formDataReducer
 });

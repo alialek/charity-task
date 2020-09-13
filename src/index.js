@@ -20,8 +20,7 @@ import App from './App';
 export const store = createStore(rootReducer, composeWithDevTools(
     applyMiddleware(thunk),
 ));
-
-store.dispatch(setStory('home', 'base'));
+window.location.search.includes('campaign') ? store.dispatch(setStory('viewer', 'base')) : store.dispatch(setStory('home', 'base'));
 
 ReactDOM.render(
     <Provider store={store}>
