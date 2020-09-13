@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-
+import {getCollections} from '../../services/API'
 import {closePopout, goBack, openModal, openPopout, setPage} from '../../store/router/actions';
+import {setPosts} from '../../store/formData/actions';
 
 import {Div, Panel, Alert, Group, Button, PanelHeader, Placeholder} from "@vkontakte/vkui"
 import Icon28AddOutline from "@vkontakte/icons/dist/28/add_outline";
@@ -9,7 +10,20 @@ import PanelHeaderButton from "@vkontakte/vkui/dist/components/PanelHeaderButton
 import VKPost from "../../components/VKPost/post";
 
 class HomePanelBase extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            isLoading: true
+        }
+    }
 
+    componentDidMount() {
+        getCollections().then(res => {
+            this.props.setPosts(res.data)
+        }).finally(() => {
+            this.setState({isLoading: false})
+        })
+    }
 
 
 
@@ -51,7 +65,7 @@ const mapDispatchToProps = {
     goBack,
     openPopout,
     closePopout,
-    openModal
+    openModal, setPosts
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePanelBase);

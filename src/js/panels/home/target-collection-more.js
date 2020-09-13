@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { setFormData } from '../../store/formData/actions';
-import { goBack, openPopout, closePopout, openModal } from '../../store/router/actions';
-import Icon28TargetOutline from '@vkontakte/icons/dist/28/target_outline';
+import { sendCollection } from '../../services/API';
 
+import { setFormData } from '../../store/formData/actions';
+import { goBack, openPopout, closePopout, openModal, setPage } from '../../store/router/actions';
+import bridge from '@vkontakte/vk-bridge';
 import {
 	Div,
 	List,
@@ -26,31 +27,28 @@ import {
 class HomePanelTargetCollectionMore extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			authors: [
-				{
-					name: 'Павел Дуров',
-					id: 1,
-				},
-				{
-					name: 'Стив Джобс',
-					id: 2,
-				},
-			],
-		};
+		this.state = {};
 		this.check = this.check.bind(this);
+		this.done = this.done.bind(this)
 	}
+
+
+	done() {
+		this.props.setPage('home', 'target-collection-publish')
+		this.props.setFormData('type', 'target');
+		sendCollection(this.props.form, 'target');
+	}
+
 	check() {
 		let { author, reasonToFinish, until } = this.props.form;
 		return (
 			reasonToFinish.length > 0 &&
 			author.name.length > 0 &&
-			(reasonToFinish === '1' || reasonToFinish === '2' && until.length > 0)
+			(reasonToFinish === '1' || (reasonToFinish === '2' && until.length > 0))
 		);
 	}
 	render() {
-		const { id, goBack, setPage, form, setFormData } = this.props;
-		console.log(form);
+		const { id, goBack, setPage, form, setFormData, user } = this.props;
 
 		return (
 			<Panel id={id}>
@@ -60,14 +58,17 @@ class HomePanelTargetCollectionMore extends React.Component {
 						<Select
 							top="Автор"
 							placeholder="Выберите автора"
-							onChange={(e) => setFormData('author', { id: e.target.value, name: this.state.authors[e.target.value - 1].name })}
+							onChange={(e) =>
+								setFormData('author', {
+									id: e.target.value,
+									name: e.target.name,
+								})
+							}
 							value={form.author.id}
 						>
-							{this.state.authors.map((author) => (
-								<option value={author.id} key={author.id}>
-									{author.name}
-								</option>
-							))}
+							<option value={user.id} name={user.name} key={user.id}>
+								{user.name}
+							</option>
 						</Select>
 						<div top="Сбор завершится">
 							<Radio
@@ -98,7 +99,7 @@ class HomePanelTargetCollectionMore extends React.Component {
 						)}
 						<Button
 							mode={this.check() ? 'primary' : 'secondary'}
-							onClick={() => setPage('home', 'target-collection-publish')}
+							onClick={this.done}
 							style={{ pointerEvents: this.check() ? '' : 'none' }}
 							size="xl"
 						>
@@ -114,13 +115,14 @@ class HomePanelTargetCollectionMore extends React.Component {
 function mapDispatchToProps(dispatch) {
 	return {
 		dispatch,
-		...bindActionCreators({ goBack, openPopout, closePopout, openModal, setFormData }, dispatch),
+		...bindActionCreators({ goBack, openPopout, closePopout, openModal, setFormData, setPage }, dispatch),
 	};
 }
 
 const mapStateToProps = (state) => {
 	return {
 		form: state.data.form,
+		user: state.data.user,
 	};
 };
 

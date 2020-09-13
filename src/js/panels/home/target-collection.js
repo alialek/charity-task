@@ -46,7 +46,7 @@ class HomePanelTargetCollection extends React.Component {
 		);
 	}
 	render() {
-		const { id, goBack, setPage, form, setFormData } = this.props;
+		const { id, goBack, setPage, form, setFormData, user } = this.props;
 
 		return (
 			<Panel id={id}>

@@ -1,24 +1,13 @@
-import {SET_FORM_DATA} from './actionTypes';
+import {SET_FORM_DATA, SET_USER, SET_POSTS} from './actionTypes';
 
 const initialState = {
     allPosts: [
-        {
-            type: '', //regular or target
-            title: '',
-            sum: '',
-            target: '',
-            description: '',
-            wallet: '',
-            picture: '',
-            author: {
-                name: 'Сергей',
-                id: '',
-                photo_100: ''
-            },
-            reasonToFinish: 0,
-            until: '2020-09-15'
-        },
+      
     ],
+    user: {
+        name: 'Павел Дуров',
+        id: 1
+    },
     form: {
         type: '', //regular or target
         title: '',
@@ -47,6 +36,19 @@ export const formDataReducer = (state = initialState, action) => {
                     ...state.form,
                     [action.payload.key]: action.payload.data
                 }
+            };
+        }
+        case SET_USER: {
+            return {
+                ...state,
+                user: action.payload.data
+            };
+        }
+
+        case SET_POSTS: {
+            return {
+                ...state,
+                allPosts: action.payload.data
             };
         }
 
