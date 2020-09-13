@@ -40,15 +40,20 @@ class HomePanelTargetCollection extends React.Component {
 				<Group>
 					<FormLayout>
 						<Div>
-						<ImageUploader
-							withIcon={true}
-							buttonText={<div className="uploader-inner"><Icon28PictureOutline fill="#3F8AE0"/><span>Загрузить обложку</span></div>}
-							onChange={this.onDrop}
-							withPreview={true}
-							singleImage={true}
-							imgExtension={['.jpg', '.gif', '.png', '.gif']}
-							maxFileSize={5242880}
-						/>
+							<ImageUploader
+								withIcon={true}
+								buttonText={
+									<div className="uploader-inner">
+										<Icon28PictureOutline fill="#3F8AE0" />
+										<span>Загрузить обложку</span>
+									</div>
+								}
+								onChange={this.onDrop}
+								withPreview={true}
+								singleImage={true}
+								imgExtension={['.jpg', '.gif', '.png', '.gif']}
+								maxFileSize={5242880}
+							/>
 						</Div>
 						<Input type="text" top="Название сбора" placeholder="Название сбора" value={this.name} />
 						<Input type="text" top="Сумма, ₽" placeholder="Сколько нужно собрать?" value={this.sum} />
@@ -59,7 +64,9 @@ class HomePanelTargetCollection extends React.Component {
 							<option value="1">Счёт VK Pay · 1235</option>
 							<option value="2">Счёт VK Pay · 1232</option>
 						</Select>
-						<Button  onClick={() => setPage('home', 'target-collection-more')} size="xl">Далее</Button>
+						<Button onClick={() => setPage('home', 'target-collection-more')} size="xl">
+							Далее
+						</Button>
 					</FormLayout>
 				</Group>
 			</Panel>
