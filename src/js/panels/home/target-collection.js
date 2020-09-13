@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
+import ImageUploader from '../../components/ImageUploader';
 import { goBack, openPopout, closePopout, openModal, setPage } from '../../store/router/actions';
 import Icon28TargetOutline from '@vkontakte/icons/dist/28/target_outline';
+import Icon28PictureOutline from '@vkontakte/icons/dist/28/picture_outline';
 
 import {
 	Div,
@@ -39,7 +40,15 @@ class HomePanelTargetCollection extends React.Component {
 				<Group>
 					<FormLayout>
 						<Div>
-							Место для блока с загрузкой фото 
+						<ImageUploader
+							withIcon={true}
+							buttonText={<div className="uploader-inner"><Icon28PictureOutline fill="#3F8AE0"/><span>Загрузить обложку</span></div>}
+							onChange={this.onDrop}
+							withPreview={true}
+							singleImage={true}
+							imgExtension={['.jpg', '.gif', '.png', '.gif']}
+							maxFileSize={5242880}
+						/>
 						</Div>
 						<Input type="text" top="Название сбора" placeholder="Название сбора" value={this.name} />
 						<Input type="text" top="Сумма, ₽" placeholder="Сколько нужно собрать?" value={this.sum} />
