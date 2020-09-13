@@ -39,7 +39,7 @@ class HomePanelTargetCollection extends React.Component {
 				<PanelHeader left={<PanelHeaderBack onClick={() => goBack()} />}>Тип сбора</PanelHeader>
 				<Group>
 					<FormLayout>
-						<Div>
+						<Div style={{ padding: '0 12px' }}>
 							<ImageUploader
 								withIcon={true}
 								buttonText={
@@ -56,7 +56,7 @@ class HomePanelTargetCollection extends React.Component {
 							/>
 						</Div>
 						<Input type="text" top="Название сбора" placeholder="Название сбора" value={this.name} />
-						<Input type="text" top="Сумма, ₽" placeholder="Сколько нужно собрать?" value={this.sum} />
+						<Input type="text" type="number" top="Сумма, ₽" placeholder="Сколько нужно собрать?" value={this.sum} />
 						<Input type="text" top="Цель" placeholder="Например, лечение человека" value={this.sum} />
 						<Textarea top="Описание" placeholder="На что пойдет деньги и как они кому-то помогут?" />
 						<Select top="Куда получать деньги" placeholder="Выберите цель поездки" value="0">

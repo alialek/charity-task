@@ -1,10 +1,10 @@
 .div-center {
-	display: table;
-	margin: 0 auto;
+    display: table;
+    margin: 0 auto;
 }
 
 .div-center img {
-	width: 10rem;
+    width: 10rem;
 }
 
 .uploader-inner {
@@ -13,26 +13,31 @@
     align-items: center;
 }
 
-.uploader-inner span{
-	padding-left: 8px;
+.uploader-inner span {
+    padding-left: 8px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: -0.32px;
+    color: #3F8AE0;
 }
 
 .buttons-group {
-	display: flex;
+    display: flex;
 }
 
 .buttons-group button:first-child {
-	margin-right: 8px;
+    margin-right: 8px;
 }
 
 .target-banner {
-	width: 100%;
-	margin-top: 8px;
-	margin-bottom: 4px;
+    width: 100%;
+    margin-top: 8px;
+    margin-bottom: 4px;
 }
 
 .Placeholder--target {
-	padding: 12px;
+    padding: 12px;
 }
 
 a,
@@ -40,8 +45,8 @@ div,
 img,
 p,
 button {
-	user-select: none;
-	-webkit-user-select: none;
-	-webkit-touch-callout: none;
-	-webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
 }

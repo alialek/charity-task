@@ -20,6 +20,7 @@ import {
 	Banner,
 	Select,
 	Textarea,
+	Radio,
 } from '@vkontakte/vkui';
 
 class HomePanelTargetCollectionMore extends React.Component {
@@ -42,7 +43,16 @@ class HomePanelTargetCollectionMore extends React.Component {
 							<option value="0">Матвей Правосудов</option>
 							<option value="1">Даниил Левоментов</option>
 						</Select>
-						<Button onClick={() => setPage('home', 'target-collection-more')} size="xl">Далее</Button>
+						<div top="Сбор завершится">
+		          <Radio name="radio" value="1" defaultChecked>Когда соберем сумму</Radio>
+		          <Radio name="radio" value="2">В определенную дату</Radio>
+		        </div>
+						{true && (
+							<Select top="Дата окончания" placeholder="Выберите дату">
+								<option value="0">Сегодня</option>
+							</Select>
+						)}
+						<Button onClick={() => setPage('home', 'target-collection-more')} size="xl">Создать сбор</Button>
 					</FormLayout>
 				</Group>
 			</Panel>

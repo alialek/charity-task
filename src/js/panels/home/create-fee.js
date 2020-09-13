@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import { goBack, openPopout, closePopout, openModal, setPage } from '../../store/router/actions';
 import Icon28TargetOutline from '@vkontakte/icons/dist/28/target_outline';
+import Icon28CalendarOutline from '@vkontakte/icons/dist/28/calendar_outline';
 
 import {
 	Div,
@@ -30,25 +31,25 @@ class HomePanelCreateFee extends React.Component {
 
 							<Banner
                             className="target-banner"
-								
+
 								before={<Icon28TargetOutline fill="#3F8AE0" />}
 								header="Целевой сбор"
 								subheader="Когда есть определённая цель"
 								asideMode="expand"
                                 onClick={() => setPage('home', 'target-collection')}
 							/>
-					
-					
+
+
 							<Banner
                              className="target-banner"
-								
-								before={<Icon28TargetOutline fill="#3F8AE0" />}
+
+								before={<Icon28CalendarOutline fill="#3F8AE0" />}
 								header="Регулярный сбор"
 								subheader="Если помощь нужна ежемесячно"
 								asideMode="expand"
 								onClick={() => console.log('[Podcast banner] onClick')}
 							/>
-						
+
 					</div>
 				</Group>
 			</Panel>
