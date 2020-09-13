@@ -15,6 +15,16 @@
     margin-right: 8px;
 }
 
+.target-banner {
+    width: 100%;
+    margin-top: 8px;
+    margin-bottom: 4px;
+}
+
+.Placeholder--target{
+    padding: 12px
+}
+
 a, div, img, p, button {
     user-select: none;
     -webkit-user-select: none;

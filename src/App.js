@@ -8,12 +8,12 @@ import * as VK from './js/services/VK';
 import {View, Root, ModalRoot, ConfigProvider} from "@vkontakte/vkui";
 
 import HomePanelProfile from './js/panels/home/base';
-import HomePanelGroups from './js/panels/home/groups';
+import HomePanelCreateFee from './js/panels/home/create-fee';
+import HomePanelTargetCollection from './js/panels/home/target-collection';
+import HomePanelTargetCollectionMore from './js/panels/home/target-collection-more';
 
 import HomeBotsListModal from './js/components/modals/HomeBotsListModal';
 import HomeBotInfoModal from './js/components/modals/HomeBotInfoModal';
-
-import MorePanelExample from './js/panels/more/example';
 
 class App extends React.Component {
     constructor(props) {
@@ -84,8 +84,10 @@ class App extends React.Component {
                         history={history}
                         onSwipeBack={() => goBack()}
                     >
-                        <HomePanelProfile id="base" withoutEpic={true}/>
-                        <HomePanelGroups id="groups"/>
+                        <HomePanelProfile id="base"/>
+                        <HomePanelCreateFee id="create-fee"/>
+                        <HomePanelTargetCollection id="target-collection"/>
+                        <HomePanelTargetCollectionMore id="target-collection-more"/>
                     </View>
                     <View
                         id="modal"
@@ -94,7 +96,7 @@ class App extends React.Component {
                         history={history}
                         onSwipeBack={() => goBack()}
                     >
-                        <MorePanelExample id="filters"/>
+                     {/* <MorePanelExample id="filters"/>  */}
                     </View>
                 </Root>
             </ConfigProvider>
