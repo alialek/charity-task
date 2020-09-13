@@ -1,24 +1,7 @@
 import {SET_FORM_DATA} from './actionTypes';
 
 const initialState = {
-    allPosts: [
-        {
-            type: '', //regular or target
-            title: '',
-            sum: '',
-            target: '',
-            description: '',
-            wallet: '',
-            picture: '',
-            author: {
-                name: 'Сергей',
-                id: '',
-                photo_100: ''
-            },
-            reasonToFinish: 0,
-            until: '2020-09-15'
-        },
-    ],
+    allPosts: [],
     form: {
         type: '', //regular or target
         title: '',
