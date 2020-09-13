@@ -20,9 +20,47 @@ import {
 	Button,
 	PanelHeader,
 	Placeholder,
+	InfoRow,
+	Progress,
 } from '@vkontakte/vkui';
 
 class ViewerPanelBase extends React.Component {
+	constructor(props) {
+		super(props);
+		this.onShare = this.onShare.bind(this);
+		this.onPublishStory = this.onPublishStory.bind(this);
+	}
+
+	onShare() {
+		connect.send("VKWebAppShare", {
+			"link": `https://vk.com/app7595116?campaign${console.log('id')}`,
+		});
+	}
+
+	onPublishStory() {
+		const canvas = document.createElement('canvas');
+
+		const backgroundImg = new Image();
+		backgroundImg.onload = () => {
+			canvas.width = backgroundImg.width;
+			canvas.height = backgroundImg.height;
+			const context = canvas.getContext('2d');
+
+			const base64 = canvas.toDataURL();
+
+			connect.send("VKWebAppShowStoryBox", {
+				"background_type": "image",
+				"blob": base64,
+				"attachment": {
+					"text": "learn_more",
+					"type": "url",
+					"url": "https://vk.com/app7595116"
+				}
+			});
+		};
+		backgroundImg.src = kit;
+	}
+
 	render() {
 		const { id, setPage } = this.props;
 
@@ -33,61 +71,70 @@ class ViewerPanelBase extends React.Component {
 					<Title level="1" weight="bold" style={{ margin: '4px 0' }}>
 						Добряши помогают котикам
 					</Title>
-					<Subhead style={{ color: '#6D7885' }} weight="medium" style={{ marginBottom: 4 }}>
+					<Subhead style={{ color: '#6D7885', marginBottom: 4  }} weight="medium">
 						Автор Матвей Правосудов
 					</Subhead>
 					<Caption style={{ color: '#818C99' }} level="1" weight="regular">
 						Сбор закончится через 5 дней
 					</Caption>
-
-					<Separator style={{ margin: '12px 0' }} />
+					<Div style={{ paddingTop: '18px' }}>
+						<Button stretched onClick={this.onShare}>Поделиться</Button>
+					</Div>
+					<Div style={{ paddingTop: '5px' }}>
+						<Button stretched onClick={this.onPublishStory}>Поделиться в истории</Button>
+					</Div>
+					<Separator wide style={{ margin: '12px 0' }} />
 					<Subhead weight="regular" style={{ margin: '4px 0 6px 0' }}>
-                    Нужно собрать до 10 сентября
+            Нужно собрать до 10 сентября
 					</Subhead>
-                    <div className="test-sosiska"></div>
-                    <Separator style={{ margin: '12px 0' }} />
-                    <Text weight="regular">
-                    Привет-привет, добряш!
-
-Я создал это событие, чтобы показать какие у меня прекрасные добряши и буду счастлив, если получится вдохновить кого-нибудь хотя бы на маленький перевод в пользу фонда Юна. 
-
-◾ Если получится собрать 1 000 рублей, то это будет 5 обработанных животных от блох и клещей.
-
-◾ Собранные 5 000 рублей превратятся в 25 кг корма для подопечных фонда.
-
-◾ А 10 000 рублей позволят провести курс занятий с кинологом по социализации сложной собаки. Чтобы она легче нашла свой дом.
-
-В благотворительности не бывает маленьких сумм, поэтому если вы хотите помочь, то переведите любую сумму, будь-то 10 рублей или 1000 💚
-                    </Text>
-                    
+          <div className="test-sosiska">
+						<div className="test-sosiska-green" style={{ width: '75%' }}>
+							<span>7 500 ₽</span>
+						</div>
+						<span>10 000 ₽</span>
+					</div>
+          <Separator wide style={{ margin: '12px 0' }} />
+          <Text weight="regular">
+          	1
+					</Text>
 				</Div>
-                <Separator/>
-                <div className="action-bar">
-                    <div className="actions">
-                        <div className="action">
-                            <Icon24LikeOutline/>
-                            <Subhead weight="medium">65</Subhead>
-                        </div>
-                        <div className="action">
-                            <Icon24CommentOutline/>
-                            <Subhead weight="medium">65</Subhead>
-                        </div>
-                        <div className="action">
-                            <Icon24ShareOutline/>
-                            <Subhead weight="medium">65</Subhead>
-                        </div>
-                    </div>
-                    <div>
-                    <div style={{width: 84}} className="action">
-                            <Icon20ViewOutline/>
-                            <Subhead weight="regular">7,2K</Subhead>
-                        </div>
-                    </div>
-                </div>
-                <Separator wide/>
-                <Div>
-                    
-                </Div>
+        <Separator wide />
+        <div className="action-bar">
+          <div className="actions">
+            <div className="action">
+              <Icon24LikeOutline/>
+              <Subhead weight="medium">65</Subhead>
+          	</div>
+            <div className="action">
+              <Icon24CommentOutline/>
+              <Subhead weight="medium">65</Subhead>
+            </div>
+            <div className="action">
+              <Icon24ShareOutline/>
+              <Subhead weight="medium">4</Subhead>
+            </div>
+        	</div>
+        	<div>
+          	<div style={{width: 84}} className="action">
+              <Icon20ViewOutline/>
+              <Subhead weight="regular">7,2K</Subhead>
+            </div>
+          </div>
+        </div>
+        <Separator wide />
+				<Group id="custom_progress_bar_block">
+	        <Div id="custom_progress_bar">
+						<Subhead weight="regular" style={{ margin: '4px 0 6px 0' }}>
+	            Собрано 7 500 ₽ из 10 000 ₽
+						</Subhead>
+	          <InfoRow>
+	            <Progress value={75} />
+	          </InfoRow>
+	        </Div>
+					<Div style={{ paddingTop: '18px' }}>
+	       		<Button size="l" mode="commerce">Помочь</Button>
+	     		</Div>
+      </Group>
 			</Panel>
 		);
 	}

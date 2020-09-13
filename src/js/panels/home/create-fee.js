@@ -28,29 +28,22 @@ class HomePanelCreateFee extends React.Component {
 				<PanelHeader left={<PanelHeaderBack onClick={() => goBack()} />}>Тип сбора</PanelHeader>
 				<Group>
 					<div style={{ flexDirection: 'column' }} className="Placeholder Placeholder--stretched Placeholder--target">
-
 							<Banner
-                            className="target-banner"
-
+                className="target-banner"
 								before={<Icon28TargetOutline fill="#3F8AE0" />}
 								header="Целевой сбор"
 								subheader="Когда есть определённая цель"
 								asideMode="expand"
-                                onClick={() => setPage('home', 'target-collection')}
+                onClick={() => setPage('home', 'target-collection')}
 							/>
-
-
 							<Banner
-                             className="target-banner"
-
+                className="target-banner"
 								before={<Icon28CalendarOutline fill="#3F8AE0" />}
 								header="Регулярный сбор"
 								subheader="Если помощь нужна ежемесячно"
 								asideMode="expand"
-                                onClick={() => setPage('home', 'regular-collection')}
+                onClick={() => setPage('home', 'regular-collection')}
 							/>
-                            
-						
 					</div>
 				</Group>
 			</Panel>

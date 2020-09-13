@@ -40,7 +40,7 @@ axios
 	.catch((error) => {
 		console.error(error);
 	});
-window.location.search.includes('campaign')
+window.location.hash.includes('campaign')
 	? store.dispatch(setStory('viewer', 'base'))
 	: store.dispatch(setStory('home', 'base'));
 
