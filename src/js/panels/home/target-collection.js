@@ -49,7 +49,7 @@ class HomePanelTargetCollection extends React.Component {
 
 		return (
 			<Panel id={id}>
-				<PanelHeader left={<PanelHeaderBack onClick={() => goBack()} />}>Тип сбора</PanelHeader>
+				<PanelHeader left={<PanelHeaderBack onClick={() => goBack()} />}>Целевой сбор</PanelHeader>
 				<Group>
 					<FormLayout>
 						<Div style={{ padding: '0 12px' }}>
@@ -76,7 +76,6 @@ class HomePanelTargetCollection extends React.Component {
 							onChange={(e) => setFormData('title', e.target.value)}
 						/>
 						<Input
-							type="text"
 							type="number"
 							top="Сумма, ₽"
 							placeholder="Сколько нужно собрать?"
