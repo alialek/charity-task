@@ -31,17 +31,17 @@ class HomePanelTargetCollection extends React.Component {
 		this.check = this.check.bind(this);
 	}
 	onDrop(pictureFiles, pictureDataURLs) {
-		this.props.setFormData('pictures', pictureFiles);
+		this.props.setFormData('picture', pictureDataURLs[0]);
 	}
 	check() {
 		let { wallet, title, sum, target, description, picture } = this.props.form;
 		return (
-			wallet >= 0 &&
+			(wallet >= 0 && wallet.length > 0) &&
 			title.length > 0 &&
 			Number(sum) > 0 &&
 			target.length > 0 &&
 			description.length > 0 &&
-			picture !== []
+			(picture !== [] && picture.length > 0)
 		);
 	}
 	render() {
@@ -72,8 +72,8 @@ class HomePanelTargetCollection extends React.Component {
 							type="text"
 							top="Название сбора"
 							placeholder="Название сбора"
-							value={form.name}
-							onChange={(e) => setFormData('name', e.target.value)}
+							value={form.title}
+							onChange={(e) => setFormData('title', e.target.value)}
 						/>
 						<Input
 							type="text"

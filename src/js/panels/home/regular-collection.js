@@ -58,7 +58,7 @@ class HomePanelRegularCollection extends React.Component {
 		return (
 			<Panel id={id}>
 				<PanelHeader separator={false} left={<PanelHeaderBack onClick={() => goBack()} />}>Тип сбора</PanelHeader>
-			
+
 					<FormLayout>
 						<Div style={{ padding: '0 12px' }}>
 							<ImageUploader
@@ -84,7 +84,6 @@ class HomePanelRegularCollection extends React.Component {
 							onChange={(e) => setFormData('name', e.target.value)}
 						/>
 						<Input
-							type="text"
 							type="number"
 							top="Сумма, ₽"
 							placeholder="Сколько нужно собрать?"
@@ -135,7 +134,7 @@ class HomePanelRegularCollection extends React.Component {
 							Далее
 						</Button>
 					</FormLayout>
-			
+
 			</Panel>
 		);
 	}
