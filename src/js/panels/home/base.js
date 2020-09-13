@@ -11,7 +11,7 @@ import VKPost from "../../components/VKPost/post";
 class HomePanelBase extends React.Component {
 
 
-  
+
 
     render() {
         const {id, allPosts, setPage} = this.props;
@@ -27,10 +27,10 @@ class HomePanelBase extends React.Component {
                 >Пожертвования</PanelHeader>
                 {allPosts.length === 0 &&
                 (<Group>
-                        <Placeholder stretched={true}
-                                     action={<Button size="m"  onClick={() => setPage('home', 'create-fee')}>Создать сбор</Button>}>
-                                    У Вас пока нет сборов. <br/> Начните доброе дело.
-                        </Placeholder>
+                  <Placeholder stretched={true}
+                               action={<Button size="m"  onClick={() => setPage('home', 'create-fee')}>Создать сбор</Button>}>
+                              У Вас пока нет сборов. <br/> Начните доброе дело.
+                  </Placeholder>
                 </Group>)}
                 {allPosts.length !== 0 && allPosts.map((post, i)=> <VKPost key={i}  post={post}/>)}
 

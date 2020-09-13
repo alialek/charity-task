@@ -16,7 +16,7 @@ const initialState = {
                 photo_100: ''
             },
             reasonToFinish: 0,
-            until: '02-03-2021'
+            until: '2020-09-15'
         },
     ],
     form: {
@@ -32,7 +32,7 @@ const initialState = {
             id: ''
         },
         reasonToFinish: 0,
-        until: '02-03-2021'
+        until: '2020-09-15'
     }
 };
 

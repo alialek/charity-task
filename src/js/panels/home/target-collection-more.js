@@ -32,12 +32,25 @@ class HomePanelTargetCollectionMore extends React.Component {
 					name: 'Павел Дуров',
 					id: 1,
 				},
+				{
+					name: 'Стив Джобс',
+					id: 2,
+				},
 			],
 		};
+		this.check = this.check.bind(this);
 	}
-
+	check() {
+		let { author, reasonToFinish, until } = this.props.form;
+		return (
+			reasonToFinish.length > 0 &&
+			author.name.length > 0 &&
+			(reasonToFinish === '1' || reasonToFinish === '2' && until.length > 0)
+		);
+	}
 	render() {
 		const { id, goBack, setPage, form, setFormData } = this.props;
+		console.log(form);
 
 		return (
 			<Panel id={id}>
@@ -47,11 +60,11 @@ class HomePanelTargetCollectionMore extends React.Component {
 						<Select
 							top="Автор"
 							placeholder="Выберите автора"
-							onChange={(e) => setFormData('author', { id: e.target.value, name: e.target.name })}
-							value={this.state.authors[0].id}
+							onChange={(e) => setFormData('author', { id: e.target.value, name: this.state.authors[e.target.value - 1].name })}
+							value={form.author.id}
 						>
 							{this.state.authors.map((author) => (
-								<option value={author.id} key={author.id} name={author.name}>
+								<option value={author.id} key={author.id}>
 									{author.name}
 								</option>
 							))}
@@ -61,7 +74,7 @@ class HomePanelTargetCollectionMore extends React.Component {
 								name="radio"
 								value="1"
 								onChange={(e) => setFormData('reasonToFinish', e.target.value)}
-								defaultChecked
+								defaultChecked={form.reasonToFinish === '1'}
 							>
 								Когда соберем сумму
 							</Radio>
@@ -69,26 +82,25 @@ class HomePanelTargetCollectionMore extends React.Component {
 								name="radio"
 								value="2"
 								onChange={(e) => setFormData('reasonToFinish', e.target.value)}
+								defaultChecked={form.reasonToFinish === '2'}
 							>
 								В определенную дату
 							</Radio>
 						</div>
-						{true && (
-							<Select
+						{form.reasonToFinish === '2' && (
+							<Input
+								type="date"
 								top="Дата окончания"
-								onChange={(e) => setFormData('until', e.target.value)}
-								value={form.until}
 								placeholder="Выберите дату"
-							>
-								<option value="0">Сегодня</option>
-								<option value="1">Завтра</option>
-							</Select>
+								value={form.until}
+								onChange={(e) => setFormData('until', e.target.value)}
+							/>
 						)}
 						<Button
-							mode={form.until >= 0 ? 'primary' : 'secondary'}
-							onClick={() => setPage('home', 'target-collection-more')}
+							mode={this.check() ? 'primary' : 'secondary'}
+							onClick={() => setPage('home', 'target-collection-publish')}
+							style={{ pointerEvents: this.check() ? '' : 'none' }}
 							size="xl"
-							style={{ pointerEvents: form.until >= 0  ? '': 'none'}}
 						>
 							Создать сбор
 						</Button>

@@ -33,23 +33,29 @@ class HomePanelRegularCollection extends React.Component {
 					name: 'Павел Дуров',
 					id: 1,
 				},
+				{
+					name: 'Стив Джобс',
+					id: 2,
+				},
 			],
 		};
 		this.onDrop = this.onDrop.bind(this);
 		this.check = this.check.bind(this);
 	}
 	onDrop(pictureFiles, pictureDataURLs) {
-		this.props.setFormData('pictures', pictureFiles);
+		this.props.setFormData('picture', pictureDataURLs[0]);
 	}
 	check() {
-		let { wallet, title, sum, target, description, picture } = this.props.form;
+		let { wallet, title, sum, target, description, picture, author } = this.props.form;
+		console.log(this.props.form);
 		return (
-			wallet >= 0 &&
+			(wallet >= 0 && wallet.length > 0) &&
 			title.length > 0 &&
 			Number(sum) > 0 &&
 			target.length > 0 &&
 			description.length > 0 &&
-			picture !== []
+			(picture !== [] && picture.length > 0) &&
+			author.name.length > 0
 		);
 	}
 	render() {
@@ -57,8 +63,8 @@ class HomePanelRegularCollection extends React.Component {
 
 		return (
 			<Panel id={id}>
-				<PanelHeader separator={false} left={<PanelHeaderBack onClick={() => goBack()} />}>Тип сбора</PanelHeader>
-			
+				<PanelHeader separator={false} left={<PanelHeaderBack onClick={() => goBack()} />}>Регулярный сбор</PanelHeader>
+
 					<FormLayout>
 						<Div style={{ padding: '0 12px' }}>
 							<ImageUploader
@@ -80,13 +86,12 @@ class HomePanelRegularCollection extends React.Component {
 							type="text"
 							top="Название сбора"
 							placeholder="Название сбора"
-							value={form.name}
-							onChange={(e) => setFormData('name', e.target.value)}
+							value={form.title}
+							onChange={(e) => setFormData('title', e.target.value)}
 						/>
 						<Input
-							type="text"
 							type="number"
-							top="Сумма, ₽"
+							top="Сумма в месяц, ₽"
 							placeholder="Сколько нужно собрать?"
 							value={form.sum}
 							onChange={(e) => setFormData('sum', e.target.value)}
@@ -117,11 +122,11 @@ class HomePanelRegularCollection extends React.Component {
 						<Select
 							top="Автор"
 							placeholder="Выберите автора"
-							onChange={(e) => setFormData('author', { id: e.target.value, name: e.target.name })}
-							value={this.state.authors[0].id}
+							onChange={(e) => setFormData('author', { id: e.target.value, name: this.state.authors[e.target.value - 1].name })}
+							value={form.author.id}
 						>
 							{this.state.authors.map((author) => (
-								<option value={author.id} key={author.id} name={author.name}>
+								<option value={author.id} key={author.id}>
 									{author.name}
 								</option>
 							))}
@@ -132,10 +137,10 @@ class HomePanelRegularCollection extends React.Component {
 							onClick={() => (console.log('ВЫЗВАТЬ БРИДЖ'), setFormData('type', 'target'))}
 							size="xl"
 						>
-							Далее
+							Создать сбор
 						</Button>
 					</FormLayout>
-			
+
 			</Panel>
 		);
 	}

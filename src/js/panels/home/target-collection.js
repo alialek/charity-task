@@ -31,18 +31,18 @@ class HomePanelTargetCollection extends React.Component {
 		this.check = this.check.bind(this);
 	}
 	onDrop(pictureFiles, pictureDataURLs) {
-		this.props.setFormData('pictures', pictureFiles);
+		this.props.setFormData('picture', pictureDataURLs[0]);
 	}
 	check() {
 		let { wallet, title, sum, target, description, picture } = this.props.form;
 		console.log( wallet, title, sum, target, description, picture)
 		return (
-			wallet.length >= 0 &&
+			(wallet >= 0 && wallet.length > 0) &&
 			title.length > 0 &&
 			Number(sum) > 0 &&
 			target.length > 0 &&
 			description.length > 0 &&
-			picture !== []
+			(picture !== [] && picture.length > 0)
 		);
 	}
 	render() {
@@ -50,7 +50,7 @@ class HomePanelTargetCollection extends React.Component {
 
 		return (
 			<Panel id={id}>
-				<PanelHeader left={<PanelHeaderBack onClick={() => goBack()} />}>Тип сбора</PanelHeader>
+				<PanelHeader left={<PanelHeaderBack onClick={() => goBack()} />}>Целевой сбор</PanelHeader>
 				<Group>
 					<FormLayout>
 						<Div style={{ padding: '0 12px' }}>
@@ -77,7 +77,6 @@ class HomePanelTargetCollection extends React.Component {
 							onChange={(e) => setFormData('title', e.target.value)}
 						/>
 						<Input
-							type="text"
 							type="number"
 							top="Сумма, ₽"
 							placeholder="Сколько нужно собрать?"
