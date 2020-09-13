@@ -1,0 +1,22 @@
+# Кэш
+
+## Python
+
+__pycache__/
+
+# Виртуальное окружение
+
+env/
+
+# Ключи
+
+keys.py
+sets.js
+
+# bundle
+
+bundle.zip
+/node_modules
+/build
+package-lock.json
+.DS_Store
