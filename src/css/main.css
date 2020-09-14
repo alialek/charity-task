@@ -1,16 +1,24 @@
 .snippet {
     min-height: 246px;
-    border-radius: 10px;
-    border: 0.5px solid rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.04), 0px 2px 4px rgba(0, 0, 0, 0.01);
+    padding: 0;
+    margin: 20px;
 }
 
 .snippet__picture {
     height: 140px;
     background-size: cover;
     background-position: center center;
+    border-radius: 8px 8px 0 0;
 }
 
+.snippet_footer {
+    border: 0.5px solid rgba(0, 0, 0, 0.08);
+    border-top: 0;
+    padding: 0;
+    border-radius: 0 0 8px 8px;
+}
 
 .div-center {
     display: table;
