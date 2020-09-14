@@ -83,7 +83,7 @@ class ViewerPanelBase extends React.Component {
 
 			const iconImg = new Image();
 			iconImg.onload = () => {
-				context.drawImage(iconImg, canvas.width / 2 - 37.5, 50);
+				// context.drawImage(iconImg, canvas.width / 2 - 37.5, 50);
 
 				context.beginPath();
 				context.moveTo(canvas.width / 2, 0);
@@ -93,11 +93,11 @@ class ViewerPanelBase extends React.Component {
 
 				context.fillStyle = "#fff";
 				context.font = "30px Verdana";
-				context.fillText('Я поддерживаю сбор', canvas.width / 2, canvas.height / 2 - 80);
+				context.fillText('Я поддерживаю сбор', canvas.width / 2, canvas.height / 2 - 300);
 
 				context.fillStyle = "#fff";
-				context.font = "bold 48px Verdana";
-				context.fillText(post.title, canvas.width / 2, canvas.height / 2);
+				context.font = "bold 36px Verdana";
+				context.fillText(post.title, canvas.width / 2, canvas.height / 2 - 250);
 
 				const base64 = canvas.toDataURL();
 
@@ -122,7 +122,11 @@ class ViewerPanelBase extends React.Component {
 		return (
 			<Panel id={id}>
 				<PanelHeader
-					left={<PanelHeaderBack onClick={() => goBack()} />}
+					left={<PanelHeaderBack onClick={() => {
+						window.location.hash = ``;
+						// bridge.send("VKWebAppSetLocation", {"location": "/"});
+						this.props.setStory('home', 'base');
+					}} />}
 					transparent={true}
 					visor={false}
 				></PanelHeader>

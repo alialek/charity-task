@@ -37,8 +37,8 @@ class VKPost extends React.Component {
 		};
 	}
 	go(id) {
-		bridge.send("VKWebAppSetLocation", {"location": "#campaign=${id}"});
-		// window.location.hash = `#campaign=${id}`;
+		// bridge.send("VKWebAppSetLocation", {"location": `campaign=${id}`});
+		window.location.hash = `#campaign=${id}`;
 		this.props.setStory('viewer', 'base');
 	}
 	getDate(time) {

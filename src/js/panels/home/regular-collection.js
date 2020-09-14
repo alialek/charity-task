@@ -45,15 +45,13 @@ class HomePanelRegularCollection extends React.Component {
 		let { wallet, title, sum, target, description, picture, author } = this.props.form;
 
 		return (
-			wallet >= 0 &&
-			wallet.length > 0 &&
+			(wallet >= 0 && wallet.length > 0) &&
 			title.length > 0 &&
 			Number(sum) > 0 &&
 			target.length > 0 &&
 			description.length > 0 &&
-			picture !== [] &&
-			picture.length > 0 &&
-			author.id.length > 0
+			(picture !== [] && picture.length > 0) &&
+			author.name.length > 0
 		);
 	}
 	render() {
