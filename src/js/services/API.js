@@ -12,7 +12,7 @@ export const sendCollection = (req, type) => {
 		description: req.description,
 		wallet: req.wallet,
 		picture: req.picture,
-		author: req.author.id,
+		author: req.author,
 		reasonToFinish: req.reasonToFinish || '',
 		until: req.until || '',
 	};
@@ -21,9 +21,7 @@ export const sendCollection = (req, type) => {
 		'x-auth-token': localStorage.getItem('token'),
 		'Content-Type': 'application/json',
 	};
-	axios.post('https://app.netquest.ru/charity/api/collection', data, { headers }).then((res) => {
-		console.log(res);
-	});
+	return axios.post('https://app.netquest.ru/charity/api/collection', data, { headers })
 };
 
 export const getCollections = (req) => {
@@ -32,4 +30,12 @@ export const getCollections = (req) => {
 		'Content-Type': 'application/json',
 	};
 	return axios.get('https://app.netquest.ru/charity/api/collection', { headers });
+};
+
+export const getCollection = (id) => {
+	let headers = {
+		'x-auth-token': localStorage.getItem('token'),
+		'Content-Type': 'application/json',
+	};
+	return axios.get(`https://app.netquest.ru/charity/api/collection/${id}`, { headers });
 };

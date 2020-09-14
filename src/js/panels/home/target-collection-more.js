@@ -29,18 +29,19 @@ class HomePanelTargetCollectionMore extends React.Component {
 		super(props);
 		this.state = {};
 		this.check = this.check.bind(this);
-		this.done = this.done.bind(this)
+		this.done = this.done.bind(this);
 	}
 
-
 	done() {
-		this.props.setPage('home', 'target-collection-publish')
 		this.props.setFormData('type', 'target');
-		sendCollection(this.props.form, 'target');
+		sendCollection(this.props.form, 'target').then((res) => {
+			this.props.setPage('home', 'base');
+		});
 	}
 
 	check() {
 		let { author, reasonToFinish, until } = this.props.form;
+		console.log(author, reasonToFinish, until);
 		return (
 			reasonToFinish.length > 0 &&
 			author.name.length > 0 &&
@@ -58,17 +59,12 @@ class HomePanelTargetCollectionMore extends React.Component {
 						<Select
 							top="Автор"
 							placeholder="Выберите автора"
-							onChange={(e) =>
-								setFormData('author', {
-									id: e.target.value,
-									name: e.target.name,
-								})
-							}
+							onChange={(e) => {
+								setFormData('author', user);
+							}}
 							value={form.author.id}
 						>
-							<option value={user.id} name={user.name} key={user.id}>
-								{user.name}
-							</option>
+							<option value={user.id}>{user.name}</option>
 						</Select>
 						<div top="Сбор завершится">
 							<Radio
@@ -98,8 +94,8 @@ class HomePanelTargetCollectionMore extends React.Component {
 							/>
 						)}
 						<Button
-						  mode="primary"
-							style={ this.check() ? {} : { opacity: 0.5, pointerEvents: 'none' }}
+							mode="primary"
+							style={this.check() ? {} : { opacity: 0.5, pointerEvents: 'none' }}
 							onClick={this.done}
 							size="xl"
 						>

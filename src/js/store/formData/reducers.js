@@ -1,4 +1,4 @@
-import {SET_FORM_DATA, SET_USER, SET_POSTS} from './actionTypes';
+import {SET_FORM_DATA, SET_USER, SET_POSTS, SET_POST} from './actionTypes';
 
 const initialState = {
     allPosts: [
@@ -20,6 +20,18 @@ const initialState = {
             name: '',
             id: ''
         },
+        reasonToFinish: 0,
+        until: '2020-09-15'
+    },
+    post: {
+        type: '', //regular or target
+        title: '',
+        sum: '',
+        target: '',
+        description: '',
+        wallet: '',
+        picture: '',
+        author: '',
         reasonToFinish: 0,
         until: '2020-09-15'
     }
@@ -49,6 +61,13 @@ export const formDataReducer = (state = initialState, action) => {
             return {
                 ...state,
                 allPosts: action.payload.data
+            };
+        }
+
+        case SET_POST: {
+            return {
+                ...state,
+                post: action.payload.data
             };
         }
 

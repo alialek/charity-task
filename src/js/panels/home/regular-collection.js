@@ -41,7 +41,7 @@ class HomePanelRegularCollection extends React.Component {
 	}
 	check() {
 		let { wallet, title, sum, target, description, picture, author } = this.props.form;
-	
+
 		return (
 			wallet >= 0 &&
 			wallet.length > 0 &&
@@ -120,12 +120,10 @@ class HomePanelRegularCollection extends React.Component {
 					<Select
 						top="Автор"
 						placeholder="Выберите автора"
-						onChange={(e) => setFormData('author', { id: e.target.value, name: e.target.name })}
+						onChange={(e) => setFormData('author', user)}
 						value={form.author.id}
 					>
-						<option value={user.id} name={user.name} key={user.id}>
-							{user.name}
-						</option>
+						<option value={user.id}>{user.name}</option>
 					</Select>
 					<Button
 						mode={this.check() ? 'primary' : 'secondary'}

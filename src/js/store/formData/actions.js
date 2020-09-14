@@ -1,4 +1,4 @@
-import { SET_FORM_DATA, SET_USER, SET_POSTS } from './actionTypes';
+import { SET_FORM_DATA, SET_USER, SET_POSTS, SET_POST } from './actionTypes';
 
 export const setFormData = (key, inputData) => {
 	return {
@@ -27,3 +27,13 @@ export const setPosts = (inputData) => {
 		},
 	};
 };
+
+export const setPost = (inputData) => {
+	return {
+		type: SET_POST,
+		payload: {
+			data: inputData,
+		},
+	};
+};
+
