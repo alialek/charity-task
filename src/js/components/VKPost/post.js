@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import bridge from '@vkontakte/vk-bridge';
 import { setStory } from '../../store/router/actions';
 import {
 	Cell,
@@ -36,7 +37,8 @@ class VKPost extends React.Component {
 		};
 	}
 	go(id) {
-		window.location.hash = `#campaign=${id}`;
+		bridge.send("VKWebAppSetLocation", {"location": "#campaign=${id}"});
+		// window.location.hash = `#campaign=${id}`;
 		this.props.setStory('viewer', 'base');
 	}
 	getDate(time) {

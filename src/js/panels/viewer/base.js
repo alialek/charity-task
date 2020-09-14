@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { bridge } from '@vkontakte/vk-bridge';
-import kit from '../../../assets/kit.jpg';
+import bridge from '@vkontakte/vk-bridge';
 import { getCollection } from '../../services/API';
 import { closePopout, goBack, openModal, openPopout, setPage } from '../../store/router/actions';
 import { setPost } from '../../store/formData/actions';
@@ -56,7 +55,7 @@ class ViewerPanelBase extends React.Component {
 	}
 
 	onShare() {
-		connect.send('VKWebAppShare', {
+		bridge.send('VKWebAppShare', {
 			link: `https://vk.com/app7595116#campaign=${window.location.hash.split('=')[1]}`,
 		});
 	}
