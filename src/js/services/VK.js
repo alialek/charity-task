@@ -10,7 +10,7 @@ const API_VERSION = '5.92';
 
 export const initApp = () => (dispatch) => {
     const VKConnectCallback = (e) => {
-        console.log(e)
+       
         if (e.detail.type === 'VKWebAppUpdateConfig') {
             VKBridge.unsubscribe(VKConnectCallback);
     

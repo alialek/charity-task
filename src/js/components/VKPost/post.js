@@ -30,8 +30,10 @@ class VKPost extends React.Component {
 	constructor(props) {
 		super(props);
 		this.go = this.go.bind(this);
-		this.getAmount = this.getAmount.bind(this)
-		this.getDate = this.getDate.bind(this)
+		this.getDate = this.getDate.bind(this);
+		this.state = {
+			have: Math.floor(Math.random() * Number(this.props.post.sum)),
+		};
 	}
 	go(id) {
 		window.location.hash = `#campaign=${id}`;
@@ -39,15 +41,8 @@ class VKPost extends React.Component {
 	}
 	getDate(time) {
 		const date = time.split('T')[0];
-		const [year,mounth,day] = date.split('-');
+		const [year, mounth, day] = date.split('-');
 		return `${day}.${mounth}.${year}`;
-	}
-	getAmount(sum) {
-		let i = 0;
-		setInterval(() => {
-			i++
-			return sum /= i
-		}, 1000)
 	}
 	render() {
 		const { id, post, platform } = this.props;
@@ -57,24 +52,30 @@ class VKPost extends React.Component {
 				<div style={{ backgroundImage: `url(${post.picture})` }} className="snippet__picture"></div>
 				<Div className="snippet_footer">
 					<Div style={{ paddingTop: '8px', paddingBottom: '8px' }}>
-						<Text weight="semibold" style={{ marginBottom: '2px' }}>{post.title}</Text>
-						<Caption
-							level="1"
-							weight="regular"
-							style={{ color: '#818C99', marginBottom: '7px' }}
-						>{`${post.author.name} · Закончится ${this.getDate(post.until)}`}</Caption>
+						<Text weight="semibold" style={{ marginBottom: '2px' }}>
+							{post.title}
+						</Text>
+						<Caption level="1" weight="regular" style={{ color: '#818C99', marginBottom: '7px' }}>{`${
+							post.author.name
+						} · Закончится ${this.getDate(post.until)}`}</Caption>
 						<Separator wide />
 					</Div>
 					<Div style={{ paddingTop: '4px' }}>
-						<div style={{ display: 'flex', justifyContent: "space-between" }}>
+						<div style={{ display: 'flex', justifyContent: 'space-between' }}>
 							<div style={{ width: '70%', textAlign: 'left' }}>
-								<Caption level="1" weight="regular" style={{ marginBottom: '8px' }}>{`Собрано ${this.getAmount(post.sum)} ₽ из ${post.sum} ₽`}</Caption>
+								<Caption
+									level="1"
+									weight="regular"
+									style={{ marginBottom: '8px' }}
+								>{`Собрано ${this.state.have} ₽ из ${post.sum} ₽`}</Caption>
 								<InfoRow>
-									<Progress value={75} />
+									<Progress value={(this.state.have / post.sum) * 100} />
 								</InfoRow>
 							</div>
 							<div style={{ width: '30%', textAlign: 'right' }}>
-								<Button onClick={() => this.go(post._id)} mode="outline" >Помочь</Button>
+								<Button onClick={() => this.go(post._id)} mode="outline">
+									Помочь
+								</Button>
 							</div>
 						</div>
 					</Div>
