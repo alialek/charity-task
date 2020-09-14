@@ -71,6 +71,7 @@ class ViewerPanelBase extends React.Component {
 	}
 
 	onPublishStory() {
+		const { post } = this.props;
 		const canvas = document.createElement('canvas');
 
 		const backgroundImg = new Image();
@@ -79,19 +80,41 @@ class ViewerPanelBase extends React.Component {
 			canvas.height = backgroundImg.height;
 			const context = canvas.getContext('2d');
 
-			const base64 = canvas.toDataURL();
+			context.drawImage(backgroundImg, 0, 0);
 
-			bridge.send('VKWebAppShowStoryBox', {
-				background_type: 'image',
-				blob: base64,
-				attachment: {
-					text: 'learn_more',
-					type: 'url',
-					url: 'https://vk.com/app7595116',
-				},
-			});
+			const iconImg = new Image();
+			iconImg.onload = () => {
+				context.drawImage(iconImg, canvas.width / 2 - 37.5, 50);
+
+				context.beginPath();
+				context.moveTo(canvas.width / 2, 0);
+				context.lineTo(canvas.width / 2, canvas.height);
+
+				context.textAlign = 'center';
+
+				context.fillStyle = "#fff";
+				context.font = "30px Verdana";
+				context.fillText('Я поддерживаю сбор', canvas.width / 2, canvas.height / 2 - 80);
+
+				context.fillStyle = "#fff";
+				context.font = "bold 48px Verdana";
+				context.fillText(post.title, canvas.width / 2, canvas.height / 2);
+
+				const base64 = canvas.toDataURL();
+
+				bridge.send("VKWebAppShowStoryBox", {
+					"background_type": "image",
+					"blob": base64,
+					"attachment": {
+						"text": "learn_more",
+						"type": "url",
+						"url": "https://vk.com/app7267167"
+					}
+				});
+			};
+			iconImg.src = './img/icon_for_story.png';
 		};
-		backgroundImg.src = kit;
+		backgroundImg.src = './img/story.png';
 	}
 
 	render() {
@@ -127,16 +150,16 @@ class ViewerPanelBase extends React.Component {
 							</Subhead>
 							<div
 								className="test-sosiska"
-								style={{ display: (this.state.have / post.sum) * 100 < 25 && 'flex' }}
+								
 							>
 								<div
 									className="test-sosiska-green"
 									style={{ width: `${(this.state.have / post.sum) * 100}%` }}
 								>
-									{(this.state.have / post.sum) * 100 >= 25 && <span>{`${this.state.have}`} ₽</span>}
+									{(this.state.have / post.sum) * 100 >= 30 && <span>{`${this.state.have}`} ₽</span>}
 								</div>
 								<div style={{ width: '80px', marginLeft: '10px' }}>
-									{(this.state.have / post.sum) * 100 < 25 && `${this.state.have} ₽`}
+									{(this.state.have / post.sum) * 100 < 30 && `${this.state.have} ₽`}
 								</div>
 								{(this.state.have / post.sum) * 100 <= 75  && <span>{`${post.sum}`} ₽</span>}
 							</div>

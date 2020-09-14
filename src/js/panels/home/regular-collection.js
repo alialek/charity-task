@@ -34,7 +34,9 @@ class HomePanelRegularCollection extends React.Component {
 	}
 	done() {
 		this.props.setFormData('type', 'regular');
-		sendCollection(this.props.form, 'regular');
+		sendCollection(this.props.form, 'regular').finally(() => {
+			this.props.setPage('home', 'base');
+		});
 	}
 	onDrop(pictureFiles, pictureDataURLs) {
 		this.props.setFormData('picture', pictureDataURLs[0]);
