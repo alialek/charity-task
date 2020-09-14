@@ -111,7 +111,6 @@ class ViewerPanelBase extends React.Component {
 						"url": "https://vk.com/app7267167"
 					}
 				});
-				setLoaderForPublishStory(false);
 			};
 			iconImg.src = './img/icon_for_story.png';
 		};
