@@ -108,7 +108,7 @@ class ViewerPanelBase extends React.Component {
 					"attachment": {
 						"text": "learn_more",
 						"type": "url",
-						"url": "https://vk.com/app7267167"
+						"url": `https://vk.com/app7595116#campaign=${window.location.hash.split('=')[1]}`,
 					}
 				});
 			};
@@ -131,7 +131,7 @@ class ViewerPanelBase extends React.Component {
 					<PanelSpinner />
 				) : (
 					<div>
-						<div className="collection-cover" style={{ backgroundImage: `url(${kit})` }}></div>
+						<div className="collection-cover" style={{ backgroundImage: `url(${post.picture})` }}></div>
 						<Div>
 							<Title level="1" weight="bold" style={{ margin: '4px 0' }}>
 								{`${post.title}`}
@@ -150,7 +150,7 @@ class ViewerPanelBase extends React.Component {
 							</Subhead>
 							<div
 								className="test-sosiska"
-								
+
 							>
 								<div
 									className="test-sosiska-green"
