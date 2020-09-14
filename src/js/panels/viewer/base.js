@@ -123,23 +123,22 @@ class ViewerPanelBase extends React.Component {
 							<Separator wide style={{ margin: '12px 0' }} />
 							<Subhead className="sosiska-desc" weight="regular" style={{ margin: '4px 0 6px 0' }}>
 								<div> {`Нужно собрать до ${this.getDate(post.until)}`}</div>
-								<div>
-									{(this.state.have / post.sum) * 100 > 75 && <span>{`${post.sum}`} ₽</span>}
-								</div>
+								<div>{(this.state.have / post.sum) * 100 > 75 && <span>{`${post.sum}`} ₽</span>}</div>
 							</Subhead>
-							<div className="test-sosiska" style={{display: (this.state.have / post.sum) * 100 < 25 && 'flex'}}>
+							<div
+								className="test-sosiska"
+								style={{ display: (this.state.have / post.sum) * 100 < 25 && 'flex' }}
+							>
 								<div
-									
 									className="test-sosiska-green"
 									style={{ width: `${(this.state.have / post.sum) * 100}%` }}
 								>
-									<span>{`${this.state.have}`} ₽</span>
+									{(this.state.have / post.sum) * 100 >= 25 && <span>{`${this.state.have}`} ₽</span>}
 								</div>
-								<div style={{width: '80px', marginLeft: '10px'}}>
-								{(this.state.have / post.sum) * 100 < 25 &&	(`${this.state.have} ₽`)}
+								<div style={{ width: '80px', marginLeft: '10px' }}>
+									{(this.state.have / post.sum) * 100 < 25 && `${this.state.have} ₽`}
 								</div>
-								{((this.state.have / post.sum) * 100 <= 75 &&
-									(this.state.have / post.sum) * 100 >= 25) && <span>{`${post.sum}`} ₽</span>}
+								{(this.state.have / post.sum) * 100 <= 75  && <span>{`${post.sum}`} ₽</span>}
 							</div>
 							<Separator wide style={{ margin: '12px 0' }} />
 							<Text weight="regular">{post.description}</Text>
@@ -212,7 +211,7 @@ const mapDispatchToProps = {
 const mapStateToProps = (state) => {
 	return {
 		post: state.data.post,
-		viewsHistory: state.router.viewsHistory
+		viewsHistory: state.router.viewsHistory,
 	};
 };
 
